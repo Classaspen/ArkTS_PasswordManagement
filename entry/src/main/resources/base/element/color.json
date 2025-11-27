@@ -94,6 +94,9 @@
     {
       "name": "special_card_border",
       "value": "#FF6A45A3"
+    },{
+      "name": "modalwindow_blue",
+      "value": "#FF0A59F7"
     }
   ]
 }

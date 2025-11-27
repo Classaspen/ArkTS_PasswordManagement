@@ -25,20 +25,12 @@
       "value": "又双叒忘记密码啦"
     },
     {
-      "name": "modalwindow_verify_server_tip",
+      "name": "modalwindow_blue",
       "value": " "
     },
     {
-      "name": "modalwindow_read_and_agree",
-      "value": "阅读并同意"
-    },
-    {
-      "name": "modalwindow_server_proxy_rule_detail",
-      "value": "服务协议及个人信息处理规则"
-    },
-    {
       "name": "modalwindow_phone_start_login",
-      "value": "手机号码一键登录"
+      "value": "登录"
     },
     {
       "name": "modalwindow_login_success",

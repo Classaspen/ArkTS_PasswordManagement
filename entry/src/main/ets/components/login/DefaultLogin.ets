@@ -1,6 +1,6 @@
 import { router } from '@kit.ArkUI';
 import promptAction from '@ohos.promptAction';
-import { OtherWaysToLogin, ReadAgreement } from './OtherWaysToLogin';
+// import { OtherWaysToLogin, ReadAgreement } from './OtherWaysToLogin';
 
 const EFFECT_DURATION = 800;
 const EFFECT_OPACITY = 0.4;
@@ -14,17 +14,15 @@ export struct DefaultLogin {
    * https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-link-0000001820999565
    */
   @Link isPresentInLoginView: boolean;
-  // 是否是默认一键登录方式
-  @State isDefaultLogin: boolean = true;
-  // 用户名
-  userName: string = '18888888888';
-  // 判断是否同意协议
-  isConfirmed: boolean = false;
-  private effect: TransitionEffect = TransitionEffect.OPACITY
-    .animation({ duration: EFFECT_DURATION })
-    .combine(TransitionEffect.opacity(EFFECT_OPACITY))
 
-  // 默认一键登录方式
+  // 用户名和密码定义
+  userName: string = 'classaspen';
+  password: string = '028122082';
+
+  // 输入的状态变量
+  @State inputName: string = '';
+  @State inputPassword: string = '';
+
   @Builder
   DefaultLoginPage() {
     Column({ space: SPACE_TEN }) {
@@ -46,7 +44,8 @@ export struct DefaultLogin {
       .alignItems(VerticalAlign.Center)
       .width($r('app.string.modalwindow_size_full'))
 
-      Text(this.userName)
+      // 用户名输入框
+      TextInput({ placeholder: '请输入用户名', text: this.inputName })
         .fontColor($r('app.color.modalwindow_grey_3'))
         .fontWeight(FontWeight.Bold)
         .padding({ left: $r('app.integer.modalwindow_padding_default') })
@@ -54,57 +53,47 @@ export struct DefaultLogin {
         .width($r('app.string.modalwindow_size_full'))
         .borderRadius($r('app.integer.modalwindow_border_radius'))
         .backgroundColor($r('app.color.modalwindow_grey_e'))
+        .onChange((value: string) => {
+          this.inputName = value;
+        })
 
-      Text($r('app.string.modalwindow_verify_server_tip'))
-        .fontColor($r('app.color.modalwindow_grey_6'))
+      // 密码输入框
+      TextInput({ placeholder: '请输入密码', text: this.inputPassword })
+        .type(InputType.Password) // 密码类型，显示为圆点
+        .fontColor($r('app.color.modalwindow_grey_3'))
+        .fontWeight(FontWeight.Bold)
+        .padding({ left: $r('app.integer.modalwindow_padding_default') })
+        .height($r('app.integer.modalwindow_user_image_height'))
         .width($r('app.string.modalwindow_size_full'))
-        .textAlign(TextAlign.Start)
-
-      Row() {
-        Checkbox({ name: 'checkbox1' })
-          .id('default_agreement')
-          .select(this.isConfirmed)
-          .onChange((value: boolean) => {
-            this.isConfirmed = value
-          })
-        ReadAgreement()
-      }
-      .width($r('app.string.modalwindow_size_full'))
-      .alignItems(VerticalAlign.Center)
+        .borderRadius($r('app.integer.modalwindow_border_radius'))
+        .backgroundColor($r('app.color.modalwindow_grey_e'))
+        .margin({ top: SPACE_TEN }) // 与上方输入框保持间距
+        .onChange((value: string) => {
+          this.inputPassword = value;
+        })
 
       Button($r('app.string.modalwindow_phone_start_login'))
         .fontColor(Color.White)
         .borderRadius($r('app.integer.modalwindow_border_radius'))
         .type(ButtonType.Normal)
-        .backgroundColor($r('app.color.modalwindow_grey_2'))
+        .backgroundColor(this.isLoginEnabled() ? $r('app.color.modalwindow_blue') : $r('app.color.modalwindow_grey_2'))
+        .enabled(this.isLoginEnabled()) // 只有输入正确时才可点击
         .onClick(() => {
-          if (this.isConfirmed) {
+          if (this.inputName === this.userName && this.inputPassword === this.password) {
             // 调用Toast显示登录成功提示
             promptAction.showToast({ message: $r('app.string.modalwindow_login_success') });
             setTimeout(() => {
               router.replaceUrl({
-                url: 'pages/MainPage' // 注意实际路径需与工程配置匹配
+                url: 'pages/MainPage'
               }, router.RouterMode.Standard)
             }, 1000)
           } else {
-            // 调用Toast显示请先阅读并同意协议提示
-            promptAction.showToast({ message: $r('app.string.modalwindow_please_read_and_agree') });
+            promptAction.showToast({ message: '用户名或密码错误' });
           }
         })
         .width($r('app.string.modalwindow_size_full'))
         .height($r('app.integer.modalwindow_height_fifty'))
-      // // Row() {
-      // //   Text($r('app.string.modalwindow_other_way_login'))
-      // //     .fontColor($r('app.color.modalwindow_grey_7'))
-      // //     .backgroundColor($r('app.color.modalwindow_transparent_7'))
-      // //     .onClick(() => {
-      // //       this.isDefaultLogin = false;
-      // //     })
-      // //
-      // //   Blank() // 在容器主轴方向上自动填充容器空余部分
-      // //
-      // // }
-      // .width($r('app.string.modalwindow_size_full'))
+        .margin({ top: SPACE_TEN })
     }
     .width($r('app.string.modalwindow_size_full'))
     .height($r('app.string.modalwindow_size_full'))
@@ -112,26 +101,12 @@ export struct DefaultLogin {
     .justifyContent(FlexAlign.Center)
   }
 
+  private isLoginEnabled(): boolean {
+    return this.inputName.length > 0 && this.inputPassword.length > 0;
+  }
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
-      // 登录方式有两种(默认一键登录方式和其他方式登录)，需要在一个模态窗口中切换，使用if进行条件渲染
-      if (this.isDefaultLogin) {
-        this.DefaultLoginPage() // 默认一键登录方式
-      } else {
-        OtherWaysToLogin()// 其他登录方式
-          .transition(this.effect) // 此处涉及到组件的显示和消失，所以使用transition属性设置出现/消失转场
-      }
-      Image($r('app.media.arrow_back'))// 通过Stack组件，两个页面只实现一个back
-        .id('login_back')
-        .width($r('app.integer.modalwindow_height_twenty_five')).height($r('app.integer.modalwindow_height_twenty_five'))
-        .margin({ top: $r('app.integer.modalwindow_margin_mid') })
-        .onClick(() => {
-          if (this.isDefaultLogin) {
-            this.isPresentInLoginView = false;
-          } else {
-            this.isDefaultLogin = true
-          }
-        })
+      this.DefaultLoginPage() // 登录页面
     }
     .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
     .size({ width: $r('app.string.modalwindow_size_full'), height: $r('app.string.modalwindow_size_full') })
@@ -140,6 +115,6 @@ export struct DefaultLogin {
       left: $r('app.integer.modalwindow_padding_default'),
       right: $r('app.integer.modalwindow_padding_default')
     })
-    .backgroundColor(Color.White) // 将模态页面背景设置为白色，以避免模态页面内组件发生显隐变化时露出下层页面
+    .backgroundColor(Color.White)
   }
 }
