@@ -28,137 +28,18 @@ export interface InsertDataEntity {
   timestamp: number;
 }
 
-
 export class DatabaseManager {
   private store: relationalStore.RdbStore | null = null;
 
-
-
-
-    context: common.UIAbilityContext | null = null;
+  context: common.UIAbilityContext | null = null;
   localDeviceNetworkId: string = '';
 
   constructor(context: common.UIAbilityContext) {
     this.context = context;
   }
 
-
-  // getTableColumns(rdbStore: relationalStore.RdbStore, tableName: string): Promise<string[]> {
-  //   return new Promise((resolve) => {
-  //     let predicates = new relationalStore.RdbPredicates(tableName);
-  //     rdbStore.query(predicates, [], (err, resultSet) => {
-  //       resolve(resultSet.columnNames);
-  //     });
-  //   });
-  // }
-
-
   private isInitialized: boolean = false; // 添加初始化状态标识
 
-  // async initialize(tablename: string, context: Context): Promise<void> {
-  //   if (this.isInitialized) return;
-  //   try {
-  //     // 创建新数据库
-  //     this.store = await relationalStore.getRdbStore(context, CommonConstants.STORE_CONFIG);
-  //     hilog.info(0x0000, 'DB', 'RdbStore instance created');
-  //
-  //     // 执行建表语句
-  //     const createTableSQL = `CREATE TABLE IF NOT EXISTS ${tablename} (
-  //       id INTEGER PRIMARY KEY AUTOINCREMENT,
-  //       name TEXT NOT NULL,
-  //       content TEXT NOT NULL,
-  //       timestamp INTEGER NOT NULL
-  //     )`;
-  //     // 校验表结构一致性
-  //     const checkTableSchema = async (rdbStore: relationalStore.RdbStore, tableName: string) => {
-  //       try {
-  //         // 检查表是否存在
-  //         const tableCheck = await rdbStore.querySql(
-  //           `SELECT name FROM sqlite_master WHERE type='table' AND name='${tableName}'`
-  //         );
-  //
-  //         if (tableCheck.rowCount <= 0) {
-  //           console.error(`Table ${tableName} does not exist`);
-  //           return;
-  //         }
-  //
-  //         // 获取实际列信息
-  //         // const columnResult = await rdbStore.querySql(
-  //         //   `PRAGMA table_info(${tableName})`
-  //         // );
-  //
-  //         let predicates = new relationalStore.RdbPredicates(tableName);
-  //         if (rdbStore != undefined) {
-  //           (rdbStore as relationalStore.RdbStore).query(predicates, [], async (err, resultSet) => {
-  //             if (err) {
-  //               console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-  //               return;
-  //             }
-  //             actualColumns = resultSet.columnNames;
-  //             console.info(`ResultSet column names: ${actualColumns}, column count: ${resultSet.columnCount}`);
-  //           });
-  //         }
-  //
-  //
-  //         let actualColumns = await this.getTableColumns(rdbStore, tableName);
-  //
-  //         const expectedColumns = [
-  //           'id',
-  //           'name',
-  //           'content',
-  //           'timestamp'
-  //         ];
-  //         let structureValid: boolean = false;
-  //         // 执行结构比对
-  //         for (let i = 0; i < expectedColumns.length; i++) {
-  //           if (actualColumns[i] !== expectedColumns[i]) {
-  //             console.error(`第${i}列不匹配: actual=${actualColumns[i]}, expected=${expectedColumns[i]}`);
-  //             break;
-  //           }else {
-  //             structureValid = true;
-  //           }
-  //         }
-  //         if (!structureValid) {
-  //           console.warn(`Schema mismatch detected, rebuilding table ${tableName}`);
-  //
-  //           // 执行原子化结构更新
-  //           await rdbStore.executeSql(`DROP TABLE IF EXISTS ${tableName}`);
-  //
-  //           const createTableSQL = `CREATE TABLE ${tableName} (
-  //             id INTEGER PRIMARY KEY AUTOINCREMENT,
-  //             name TEXT NOT NULL,
-  //             content TEXT NOT NULL,
-  //             timestamp INTEGER NOT NULL
-  //           )`;
-  //
-  //           await rdbStore.executeSql(createTableSQL);
-  //           console.info(`Table ${tableName} structure updated`);
-  //         }
-  //       } catch (err) {
-  //         console.error(`Schema validation failed: ${err.message}`);
-  //       }
-  //     };
-  //
-  //     // 结构验证工具函数
-  //     const validateSchema = (actual: string[], expected: string[]): boolean => {
-  //       // 列数量校验
-  //       if (actual.length !== expected.length) return false;
-  //
-  //       // 列顺序与名称校验
-  //       for (let i = 0; i < expected.length; i++) {
-  //         if (actual[i] !== expected[i]) return false;
-  //       }
-  //
-  //       return true;
-  //     };
-  //     await checkTableSchema(this.store, tablename);
-  //     await this.store.executeSql(createTableSQL);
-  //     this.isInitialized = true;
-  //   } catch (err) {
-  //     hilog.error(0x0000, 'DB', `Database operation failed: ${err.message}`);
-  //     throw new Error(`Initialize failed: ${err.message}`); // 抛出异常防止静默失败
-  //   }
-  // }
   async initialize(tablename: string, context: Context): Promise<void> {
     if (this.isInitialized) return;
     try {
@@ -232,9 +113,42 @@ export class DatabaseManager {
       });
     });
   }
+  //获取当前数据库里一共有多少条数据
+  async getTotalPasswordCount(): Promise<number> {
+    if (!this.store) {
+      throw new Error('RdbStore is not initialized');
+    }
 
+    const tables = ['important_frequent', 'important_infrequent', 'unimportant'];
+    let totalCount = 0;
 
+    try {
+      for (const table of tables) {
+        // 检查表是否存在
+        const tableCheck = await this.store.querySql(
+          `SELECT name FROM sqlite_master WHERE type='table' AND name='${table}'`
+        );
 
+        if (tableCheck.rowCount > 0) {
+          // 表存在，统计行数
+          const countResult = await this.store.querySql(
+            `SELECT COUNT(*) as count FROM ${table}`
+          );
+
+          if (countResult.rowCount > 0) {
+            countResult.goToFirstRow();
+            const count = countResult.getDouble(countResult.getColumnIndex('count'));
+            totalCount += count;
+          }
+        }
+      }
+
+      return totalCount;
+    } catch (err) {
+      console.error('统计密码数量失败:', err);
+      return 0;
+    }
+  }
   // Subscribe to data change messages from other devices within the network.
   subscribeDataChange() {
     if (this.store) {
@@ -299,38 +213,6 @@ export class DatabaseManager {
     }
     return deviceIds;
   }
-
-  // Synchronize data.
-  // async syncData() {
-  //   if (this.store) {
-  //     const deviceIds: string[] = this.getDeviceList();
-  //     if (deviceIds.length === 0) {
-  //       return;
-  //     }
-  //     // Construct predicate objects for synchronizing distributed tables.
-  //     const predicates = new relationalStore.RdbPredicates(this.tableName);
-  //     // Specify the list of devices to synchronize.
-  //     predicates.inDevices(deviceIds);
-  //     try {
-  //       // Call the interface for synchronizing data to push the current device data changes to other devices in the network.
-  //       const result = await this.store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
-  //       // Obtain synchronization results.
-  //       for (let i = 0; i < result.length; i++) {
-  //         const deviceId = result[i][0];
-  //         const syncResult = result[i][1];
-  //         if (syncResult === 0) {
-  //           hilog.info(0x0000, 'hilog', CommonConstants.RDB_TAG, `device:${deviceId} sync success`);
-  //         } else {
-  //           hilog.error(0x0000, 'hilog', CommonConstants.RDB_TAG,
-  //             `device:${deviceId} sync failed, status:${syncResult}`);
-  //         }
-  //       }
-  //     } catch (err) {
-  //       hilog.error(0x0000, 'hilog', CommonConstants.RDB_TAG,
-  //         'Push data failed, code: ' + err.code + ', message: ' + err.message);
-  //     }
-  //   }
-  // }
 
   /**
    * Query remote device data within the network
@@ -538,5 +420,3 @@ export class DatabaseManager {
     });
   }
 }
-
-// export default new DatabaseManager(this.context);

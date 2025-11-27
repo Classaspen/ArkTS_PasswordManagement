@@ -1,17 +1,30 @@
 import { router } from '@kit.ArkUI';
+import  { DataEntity, TableCategory, DatabaseManager, InsertDataEntity} from '../components/database/Database';
+import { LengthMetrics } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct PersonInfo {
   @State userName: string = '李明韩'
   @State userDescription: string = '移动应用开发爱好者'
-  @State passwordCount: number = 42 // 先给个固定值测试显示效果
+  @State passwordCount: number = 0
+
+  private dbManager: DatabaseManager = new DatabaseManager(this.getUIContext().getHostContext()as common.UIAbilityContext)
+
+  async aboutToAppear() {
+    // 初始化数据库（选择任意一个表名即可）
+    await this.dbManager.initialize('important_frequent',this.getUIContext().getHostContext()as common.UIAbilityContext);
+
+    // 获取总密码数量
+    this.passwordCount = await this.dbManager.getTotalPasswordCount();
+  }
 
   build() {
     Column() {
       // 头像区域 - 居中显示
       Column() {
-        Image($r('app.media.batman'))
+        Image($r('app.media.avatar'))
           .width(120)
           .height(120)
           .borderRadius(60) // 圆形头像

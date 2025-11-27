@@ -73,36 +73,6 @@ struct PswHomePage {
     alignment: DialogAlignment.Bottom
   });
 
-  // async accept(isInsert: boolean, newPassword: DataEntity): Promise<void> {
-  //   const insertNewPsw: InsertDataEntity = {
-  //     name: newPassword.name,
-  //     content: newPassword.content,
-  //     timestamp: newPassword.timestamp
-  //   };
-  //   if (isInsert) {
-  //     await this.dbManager.insertData(this.table, insertNewPsw);
-  //     await this.dbManager.printoutdb(this.table);//输出表内容。
-  //
-  //     this.passwords.push(newPassword);
-  //     // console.log("Initialize table name:", this.table);
-  //     console.log("Insert table name:", this.table);
-  //     hilog.info(0x0000, 'hilog', `New entry: ${newPassword.name} (TS: ${newPassword.timestamp})`);
-  //   } else {
-  //     await this.dbManager.updateData(this.table, newPassword);
-  //     this.passwords = this.passwords.map((item: DataEntity) =>
-  //     item.id === newPassword.id
-  //       ? {
-  //       id: item.id,
-  //       name: newPassword.name,
-  //       content: newPassword.content,
-  //       timestamp: newPassword.timestamp
-  //     }
-  //       : item
-  //     );
-  //
-  //     this.index = -1;
-  //   }
-  // }
   async accept(isInsert: boolean, newPassword: DataEntity): Promise<void> {
     const insertNewPsw: InsertDataEntity = {
       name: newPassword.name,
@@ -136,8 +106,6 @@ struct PswHomePage {
     }
     await this.dbManager.printoutdb(this.table);//输出表内容。
   }
-
-
 
   aboutToDisappear(): void {
     this.context.eventHub.off('dataChange', this.eventFunc);

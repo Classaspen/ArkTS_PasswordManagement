@@ -29,7 +29,7 @@ export struct DefaultLogin {
   DefaultLoginPage() {
     Column({ space: SPACE_TEN }) {
       Row({ space: SPACE_TEN }) {
-        Image($r('app.media.batman'))
+        Image($r('app.media.avatar'))
           .width($r('app.integer.modalwindow_user_image_height'))
           .height($r('app.integer.modalwindow_user_image_height'))
         Column({ space: SPACE_TEN }) {
@@ -93,18 +93,18 @@ export struct DefaultLogin {
         })
         .width($r('app.string.modalwindow_size_full'))
         .height($r('app.integer.modalwindow_height_fifty'))
-      Row() {
-        Text($r('app.string.modalwindow_other_way_login'))
-          .fontColor($r('app.color.modalwindow_grey_7'))
-          .backgroundColor($r('app.color.modalwindow_transparent_7'))
-          .onClick(() => {
-            this.isDefaultLogin = false;
-          })
-
-        Blank() // 在容器主轴方向上自动填充容器空余部分
-
-      }
-      .width($r('app.string.modalwindow_size_full'))
+      // // Row() {
+      // //   Text($r('app.string.modalwindow_other_way_login'))
+      // //     .fontColor($r('app.color.modalwindow_grey_7'))
+      // //     .backgroundColor($r('app.color.modalwindow_transparent_7'))
+      // //     .onClick(() => {
+      // //       this.isDefaultLogin = false;
+      // //     })
+      // //
+      // //   Blank() // 在容器主轴方向上自动填充容器空余部分
+      // //
+      // // }
+      // .width($r('app.string.modalwindow_size_full'))
     }
     .width($r('app.string.modalwindow_size_full'))
     .height($r('app.string.modalwindow_size_full'))
