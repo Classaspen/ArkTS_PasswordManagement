@@ -6,7 +6,6 @@ import { router } from '@kit.ArkUI';
 struct MainPage {
   @State private refreshFlag: boolean = false;
 
-  // 页面生命周期
   aboutToAppear() {
     console.log('MainPage loaded');
   }
