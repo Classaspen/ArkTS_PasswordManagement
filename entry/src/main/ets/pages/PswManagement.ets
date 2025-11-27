@@ -153,57 +153,57 @@ struct PswHomePage {
         Flex({ direction: FlexDirection.Column }) {
           this.NavigationTitle();
 
-          Search({
-            value: this.searchText,
-            placeholder: CommonConstants.SEARCH_TEXT,
-            controller: this.searchController
-          })
-            .width('100%')
-            .height(40)
-            .flexShrink(0)
-            .borderRadius(24)
-            .margin({
-              top: 8,
-              bottom: 16
-            })
-            .placeholderColor('rgba(0, 0, 0, 0.6)')
-            .placeholderFont({
-              size: 16,
-              weight: 400,
-            })
-            .textFont({ size: 16 })
-            .padding({
-              top: 9,
-              right: 12,
-              bottom: 9,
-              left: 12
-            })
-            .onChange(async (searchValue: string) => {
-              this.searchText = searchValue;
-              if (searchValue === '') {
-                const result: DataEntity[] = await this.dbManager.query(this.table, '');
-                this.passwords = result;
-              }
-            })
-            .onSubmit(async (searchValue: string) => {
-              if (searchValue === '') {
-                const result: DataEntity[] = await this.dbManager.query(this.table, '');
-                this.passwords = result;
-              } else {
-                const keyList: Array<string> = Object.keys(TextList);
-                const typeText = keyList.find(key => {
-                  let result: string = ''
-                  try {
-                    result = this.context.resourceManager.getStringByNameSync(key);
-                  } catch (err) {
-                    hilog.error(0x0000, 'PswHomePage', `getStringByNameSync failed, Code:${err.code},message: ${err.message}`);
-                  }
-                  return result === searchValue;
-                });
-                const result: DataEntity[] = await this.dbManager.query(this.table, typeText || '');
-                this.passwords = result;
-              }
-            })
+          // Search({
+          //   value: this.searchText,
+          //   placeholder: CommonConstants.SEARCH_TEXT,
+          //   controller: this.searchController
+          // })
+          //   .width('100%')
+          //   .height(40)
+          //   .flexShrink(0)
+          //   .borderRadius(24)
+          //   .margin({
+          //     top: 8,
+          //     bottom: 16
+          //   })
+          //   .placeholderColor('rgba(0, 0, 0, 0.6)')
+          //   .placeholderFont({
+          //     size: 16,
+          //     weight: 400,
+          //   })
+          //   .textFont({ size: 16 })
+          //   .padding({
+          //     top: 9,
+          //     right: 12,
+          //     bottom: 9,
+          //     left: 12
+          //   })
+          //   .onChange(async (searchValue: string) => {
+          //     this.searchText = searchValue;
+          //     if (searchValue === '') {
+          //       const result: DataEntity[] = await this.dbManager.query(this.table, '');
+          //       this.passwords = result;
+          //     }
+          //   })
+          //   .onSubmit(async (searchValue: string) => {
+          //     if (searchValue === '') {
+          //       const result: DataEntity[] = await this.dbManager.query(this.table, '');
+          //       this.passwords = result;
+          //     } else {
+          //       const keyList: Array<string> = Object.keys(TextList);
+          //       const typeText = keyList.find(key => {
+          //         let result: string = ''
+          //         try {
+          //           result = this.context.resourceManager.getStringByNameSync(key);
+          //         } catch (err) {
+          //           hilog.error(0x0000, 'PswHomePage', `getStringByNameSync failed, Code:${err.code},message: ${err.message}`);
+          //         }
+          //         return result === searchValue;
+          //       });
+          //       const result: DataEntity[] = await this.dbManager.query(this.table, typeText || '');
+          //       this.passwords = result;
+          //     }
+          //   })
 
           List({ space: CommonConstants.FULL_SIZE }) {
             ForEach(this.passwords, (item: DataEntity, index: number) => {
