@@ -16,9 +16,7 @@ struct UnifiedPage {
   build() {
     Column() {
       if (this.showWelcome) {
-        // 欢迎界面 - 使用 Stack 实现居中布局
         Stack({ alignContent: Alignment.Center }) {
-          // 主要欢迎文字
           Column() {
             Text('欢迎进入密码管理系统')
               .fontSize(32)
@@ -27,7 +25,6 @@ struct UnifiedPage {
           }
           .alignItems(HorizontalAlign.Center)
 
-          // 右下角署名 - 使用绝对定位
           Text('028122082李明韩||移动应用开发')
             .fontSize(12)
             .fontColor('#666666')

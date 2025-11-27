@@ -15,9 +15,8 @@ struct MainPage {
 
   build() {
     Column() {
-
       Column() {
-        // 动态彩虹条 - 修正后的写法
+        // 动态彩虹条
         Row()
           .linearGradient({
             angle: 90,
@@ -113,7 +112,7 @@ struct MainPage {
     .backgroundColor($r('app.color.background_color'))
   }
 
-  // 统一卡片构建方法 - 增大尺寸
+  // 统一卡片构建方法
   @Builder
   BuildCard(text: Resource, color: Resource, borderColor: Resource, onClick: () => void) {
     Button() {
@@ -131,11 +130,11 @@ struct MainPage {
     .onClick(onClick)
   }
 
-  // 特殊卡片 - 增大尺寸并使内容居中
+  // 特殊卡片
   @Builder
   BuildSpecialCard(text: Resource, color: Resource, borderColor: Resource) {
     Column() {
-      Image($r('app.media.ic_user'))
+      Image($r('app.media.avatar'))
         .width(60) // 增大图标
         .height(60)
         .margin({ bottom: 16 })

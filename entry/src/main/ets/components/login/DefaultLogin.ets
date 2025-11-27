@@ -8,18 +8,10 @@ const SPACE_TEN = 10;
 
 @Component
 export struct DefaultLogin {
-  /**
-   * isPresentInLoginView控制登录页面是否显示
-   * 子组件中被@Link装饰的变量与其父组件中@State装饰的对应数据源建立双向数据绑定，详见：
-   * https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-link-0000001820999565
-   */
-  @Link isPresentInLoginView: boolean;
 
-  // 用户名和密码定义
   userName: string = 'classaspen';
   password: string = '028122082';
 
-  // 输入的状态变量
   @State inputName: string = '';
   @State inputPassword: string = '';
 

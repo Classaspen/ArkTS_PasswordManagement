@@ -118,19 +118,15 @@ export class DatabaseManager {
     if (!this.store) {
       throw new Error('RdbStore is not initialized');
     }
-
     const tables = ['important_frequent', 'important_infrequent', 'unimportant'];
     let totalCount = 0;
-
     try {
       for (const table of tables) {
-        // 检查表是否存在
         const tableCheck = await this.store.querySql(
           `SELECT name FROM sqlite_master WHERE type='table' AND name='${table}'`
         );
 
         if (tableCheck.rowCount > 0) {
-          // 表存在，统计行数
           const countResult = await this.store.querySql(
             `SELECT COUNT(*) as count FROM ${table}`
           );
@@ -142,19 +138,16 @@ export class DatabaseManager {
           }
         }
       }
-
       return totalCount;
     } catch (err) {
       console.error('统计密码数量失败:', err);
       return 0;
     }
   }
-  // Subscribe to data change messages from other devices within the network.
+
   subscribeDataChange() {
     if (this.store) {
       try {
-        // Call the distributed data subscription interface to register observers for the database.
-        // When data changes occur in a distributed database, a callback will be called.
         this.store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, async (devices) => {
           hilog.info(0x0000, 'hilog', CommonConstants.RDB_TAG, 'dataChange devices ' + devices);
           for (let i = 0; i < devices.length; i++) {
@@ -214,11 +207,6 @@ export class DatabaseManager {
     return deviceIds;
   }
 
-  /**
-   * Query remote device data within the network
-   * @param device device id
-   * @returns
-   */
   public async remoteQuery(device: string) {
     let list: DataEntity[] = [];
     if (this.store) {
@@ -316,13 +304,11 @@ export class DatabaseManager {
     };
 
     try {
-
       return await this.store?.insert(table, valueBucket);
     } catch (err) {
       console.error(`Insert failed: ${err.code} - ${err.message}`);
       return -1;
     }
-
   }
 
   // 删除数据
@@ -361,7 +347,7 @@ export class DatabaseManager {
     }
   }
 
-  // 查询数据
+  // 查询数据(刚开始写了但是调试过程中有点问题后面时间不够遂不继续细化了)
   async query(table: string, name: string): Promise<DataEntity[]> {
     const predicates = new relationalStore.RdbPredicates(table);
 

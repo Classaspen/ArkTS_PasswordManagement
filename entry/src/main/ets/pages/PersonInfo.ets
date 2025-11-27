@@ -17,9 +17,9 @@ struct PersonInfo {
   async aboutToAppear() {
     // 初始化Preferences
     try {
-      this.preferences = await preferences.getPreferences(this.getUIContext().getHostContext() as common.UIAbilityContext, 'user_profile');
+      this.preferences = await preferences.getPreferences(
+        this.getUIContext().getHostContext() as common.UIAbilityContext, 'user_profile');
 
-      // 读取保存的用户名和个人描述，并转换为string
       const savedName = await this.preferences.get('userName', '李明韩');
       const savedDescription = await this.preferences.get('userDescription', '人类');
 
