@@ -1,0 +1,219 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "modalwindow_page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "modalwindow_welcome_back",
+      "value": "欢迎回来，密码管理员！"
+    },
+    {
+      "name": "modalwindow_more_wonderful_after_login",
+      "value": "又双叒忘记密码啦"
+    },
+    {
+      "name": "modalwindow_verify_server_tip",
+      "value": " "
+    },
+    {
+      "name": "modalwindow_read_and_agree",
+      "value": "阅读并同意"
+    },
+    {
+      "name": "modalwindow_server_proxy_rule_detail",
+      "value": "服务协议及个人信息处理规则"
+    },
+    {
+      "name": "modalwindow_phone_start_login",
+      "value": "手机号码一键登录"
+    },
+    {
+      "name": "modalwindow_login_success",
+      "value": "登录成功"
+    },
+    {
+      "name": "modalwindow_message_third_party_authorization",
+      "value": "使用XX应用授权登录 "
+    },
+    {
+      "name": "modalwindow_please_read_and_agree",
+      "value": "请先阅读并同意协议"
+    },
+    {
+      "name": "modalwindow_other_way_login",
+      "value": "其他登录方式"
+    },
+    {
+      "name": "modalwindow_full_screen_modal_login_description",
+      "value": "点击跳转到全屏登录页"
+    },
+    {
+      "name": "modalwindow_phone_login",
+      "value": "手机号登录"
+    },
+    {
+      "name": "modalwindow_new",
+      "value": "首次登录将产生新账号"
+    },
+    {
+      "name": "modalwindow_input_phone_number",
+      "value": "请输入手机号"
+    },
+    {
+      "name": "modalwindow_verify",
+      "value": "发送短信验证码"
+    },
+    {
+      "name": "modalwindow_86",
+      "value": "+86"
+    },
+    {
+      "name": "modalwindow_size_full",
+      "value": "100%"
+    },
+    {
+      "name": "modalwindow_size_ninety_percent",
+      "value": "90%"
+    },
+    {
+      "name": "modalwindow_message_right_phone_number",
+      "value": "请输入正确的手机号"
+    },
+    {
+      "name": "modalwindow_message_read_agreement",
+      "value": "请先阅读并同意服务协议及个人信息处理规则"
+    },
+    {
+      "name": "modalwindow_message_verify_code_send",
+      "value": "验证码已发送"
+    },
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "mainpage_title",
+      "value": "主页面"
+    },
+    {
+      "name": "mainpage_feature1",
+      "value": "重要+不常用"
+    },
+    {
+      "name": "mainpage_feature2",
+      "value": "重要+常用"
+    },
+    {
+      "name": "mainpage_feature3",
+      "value": "不重要"
+    },
+    {
+      "name": "mainpage_feature4",
+      "value": "个人信息"
+    },    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Relational database"
+    },
+    {
+      "name": "edit_text",
+      "value": "Edit"
+    },
+    {
+      "name": "pay_text",
+      "value": "Pay"
+    },
+    {
+      "name": "income_text",
+      "value": "Income"
+    },
+    {
+      "name": "count_text",
+      "value": "编辑密码"
+    },
+    {
+      "name": "confirm_text",
+      "value": "Confirm"
+    },
+    {
+      "name": "search",
+      "value": "又不记得密码啦"
+    },
+    {
+      "name": "TOAST_TEXT_1",
+      "value": "The account item type cannot be empty"
+    },
+    {
+      "name": "TOAST_TEXT_2",
+      "value": "The account item amount is not a positive integer"
+    },
+    {
+      "name": "foods",
+      "value": "Foods"
+    },
+    {
+      "name": "snacks",
+      "value": "Snacks"
+    },
+    {
+      "name": "fuel",
+      "value": "Fuel"
+    },
+    {
+      "name": "travel",
+      "value": "Travel"
+    },
+    {
+      "name": "games",
+      "value": "Games"
+    },
+    {
+      "name": "pets",
+      "value": "Pets"
+    },
+    {
+      "name": "password",
+      "value": "密码"
+    },
+    {
+      "name": "platform_name",
+      "value": "平台名称"
+    },
+    {
+      "name": "delete_text",
+      "value": "delete"
+    },
+    {
+      "name": "add_Psw",
+      "value": "Please add the password first"
+    },
+    {
+      "name": "psw_title",
+      "value": "密码管理页面"
+    },
+    {
+      "name": "distributed_data_sync_reason",
+      "value": "Allow the permission for data exchange between different devices in distributed communication wheel scenarios."
+    }
+  ]
+}

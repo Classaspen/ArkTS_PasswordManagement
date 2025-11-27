@@ -1,0 +1,216 @@
+{
+  "integer": [ {
+    "name": "marquee_trip_message_height",
+    "value": 160
+  },
+    {
+      "name": "modalwindow_border_radius",
+      "value": 8
+    },
+    {
+      "name": "modalwindow_border_radius_mid",
+      "value": 16
+    },
+    {
+      "name": "modalwindow_other_ways_border_radius",
+      "value": 16
+    },
+    {
+      "name": "modalwindow_duration",
+      "value": 800
+    },
+    {
+      "name": "modalwindow_user_image_height",
+      "value": 40
+    },
+    {
+      "name": "modalwindow_font_size_mid",
+      "value": 20
+    },
+    {
+      "name": "modalwindow_font_size_big",
+      "value": 25
+    },
+    {
+      "name": "modalwindow_padding_default",
+      "value": 12
+    },
+    {
+      "name": "modalwindow_padding_to_top",
+      "value": 200
+    },
+    {
+      "name": "modalwindow_padding_mid",
+      "value": 20
+    },
+    {
+      "name": "modalwindow_height_fifty",
+      "value": 50
+    },
+    {
+      "name": "modalwindow_height_twenty_five",
+      "value": 25
+    },
+    {
+      "name": "modalwindow_margin_default",
+      "value": 10
+    },
+    {
+      "name": "modalwindow_margin_mid",
+      "value": 20
+    },
+    {
+      "name": "modalwindow_other_ways_icon_height",
+      "value": 32
+    },
+    {
+      "name": "modalwindow_arrow_right_height",
+      "value": 16
+    }, {
+      "name": "cube_animation_search_height",
+      "value": 30
+    },
+    {
+      "name": "cube_animation_search_radius",
+      "value": 5
+    },
+    {
+      "name": "cube_animation_icon_size",
+      "value": 24
+    },
+    {
+      "name": "cube_animation_header_height",
+      "value": 46
+    },
+    {
+      "name": "cube_animation_padding_common",
+      "value": 16
+    },
+    {
+      "name": "cube_animation_text_large",
+      "value": 24
+    },
+    {
+      "name": "cube_animation_text_medium",
+      "value": 18
+    },
+    {
+      "name": "cube_animation_text_small",
+      "value": 14
+    },
+    {
+      "name": "cube_animation_margin_large",
+      "value": 20
+    },
+    {
+      "name": "cube_animation_margin_medium",
+      "value": 16
+    },
+    {
+      "name": "cube_animation_margin_small",
+      "value": 8
+    },
+    {
+      "name": "cube_animation_margin_xs",
+      "value": 4
+    },
+    {
+      "name": "cube_animation_bg_height",
+      "value": 200
+    },
+    {
+      "name": "cube_animation_banner_height",
+      "value": 120
+    },
+    {
+      "name": "cube_animation_dot_width",
+      "value": 24
+    },
+    {
+      "name": "cube_animation_dot_height",
+      "value": 4
+    },
+    {
+      "name": "cube_animation_radius_medium",
+      "value": 12
+    },
+    {
+      "name": "cube_animation_grid_height",
+      "value": 150
+    },
+    {
+      "name": "cube_animation_hot_grid_height",
+      "value": 200
+    },
+    {
+      "name": "cube_animation_tab_height",
+      "value": 56
+    },
+    {
+      "name": "cube_animation_divider_width",
+      "value": 1
+    },
+    {
+      "name": "cube_animation_margin_negative",
+      "value": -150
+    },{
+      "name": "list_exchange_icon_size",
+      "value": 30
+    },
+    {
+      "name": "list_exchange_title_height",
+      "value": 50
+    },
+    {
+      "name": "list_exchange_list_height",
+      "value": 210
+    },
+    {
+      "name": "list_exchange_delete_icon_margin_right",
+      "value": 12
+    },
+    {
+      "name": "list_exchange_shadow_radius",
+      "value": 70
+    },{
+      "name": "pattern_lock_message_fontsize",
+      "value": 16
+    },
+    {
+      "name": "pattern_lock_border_radius",
+      "value": 10
+    },
+    {
+      "name": "pattern_lock_side_length",
+      "value": 300
+    },
+    {
+      "name": "pattern_lock_circle_radius",
+      "value": 10
+    },
+    {
+      "name": "pattern_lock_path_stroke_width",
+      "value": 14
+    },
+    {
+      "name": "pattern_lock_row_space",
+      "value": 20
+    },
+    {
+      "name": "pattern_lock_row_margin",
+      "value": 30
+    },
+    {
+      "name": "pattern_lock_button_width",
+      "value": 300
+    },
+    {
+      "name": "pattern_lock_new_page_text_fontsize",
+      "value": 18
+    },
+    {
+      "name": "pattern_lock_new_page_text_margin_top",
+      "value": 20
+    }
+  ]
+}

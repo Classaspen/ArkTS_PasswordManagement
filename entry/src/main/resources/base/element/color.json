@@ -1,0 +1,99 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },    {
+      "name": "modalwindow_main_bkg",
+      "value": "#ffa7c8"
+    },
+    {
+      "name": "modalwindow_grey_3",
+      "value": "#333333"
+    },
+    {
+      "name": "modalwindow_transparent_f",
+      "value": "#00ffffff"
+    },
+    {
+      "name": "modalwindow_transparent_7",
+      "value": "#00777777"
+    },
+    {
+      "name": "modalwindow_grey_e",
+      "value": "#eeeeee"
+    },
+    {
+      "name": "modalwindow_grey_6",
+      "value": "#666666"
+    },
+    {
+      "name": "modalwindow_grey_9",
+      "value": "#999999"
+    },
+    {
+      "name": "modalwindow_grey_2",
+      "value": "#222222"
+    },
+    {
+      "name": "modalwindow_grey_7",
+      "value": "#777777"
+    },
+    {
+      "name": "mainpage_background",
+      "value": "#CCDFFF"
+    },
+    {
+      "name": "background",
+      "value": "#666666"
+    },
+    {
+      "name": "main_color",
+      "value": "#FF007DFF"
+    },
+    {
+      "name": "pay_color",
+      "value": "#FFE84826"
+    },
+    {
+      "name": "border_color",
+      "value": "#33182431"
+    },
+    {
+      "name": "background_color",
+      "value": "#F8FAFD"
+    },
+    {
+      "name": "card1_color",
+      "value": "#FFFF6B6B"
+    },
+    {
+      "name": "card1_border",
+      "value": "#FFFF4757"
+    },
+    {
+      "name": "card2_color",
+      "value": "#FF4ECDC4"
+    },
+    {
+      "name": "card2_border",
+      "value": "#FF45B7AA"
+    },
+    {
+      "name": "card3_color",
+      "value": "#FFFFD166"
+    },
+    {
+      "name": "card3_border",
+      "value": "#FFFFC048"
+    },
+    {
+      "name": "special_card_color",
+      "value": "#FF7E57C2"
+    },
+    {
+      "name": "special_card_border",
+      "value": "#FF6A45A3"
+    }
+  ]
+}
